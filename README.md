@@ -1,4 +1,5 @@
 # Terraform Plan GitHub Action
+
 Runs `terraform plan` on your project and posts a comment with the changes on a Pull Request (PR).  It runs the following commands:
 ```sh
 terraform init
