@@ -161,16 +161,18 @@ const addComment = async (
  */
 const deleteComment = async (octokit, context, title) => {
   // Get existing comments.
+  console.log(`Fetching comments.`);
   const { data: comments } = await octokit.rest.issues.listComments({
     ...context.repo,
     issue_number: context.payload.pull_request.number,
   });
-
+  console.log(`Finding bot comments matching ${title}.`);
   // Find the bot's comment
   const comment = comments.find(
     (comment) =>
       comment.user.type === "Bot" && comment.body.indexOf(title) > -1,
   );
+  console.log(`Comments found: ${comment}`);
   if (comment) {
     console.log(`Deleting comment '${title}: ${comment.id}'`);
     await octokit.rest.issues.deleteComment({
