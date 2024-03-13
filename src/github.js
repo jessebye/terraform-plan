@@ -166,6 +166,7 @@ const deleteComment = async (octokit, context, title) => {
     ...context.repo,
     issue_number: context.payload.pull_request.number,
   });
+  console.log(`Got back the following comments: ${comments}.`);
   console.log(`Finding bot comments matching ${title}.`);
   // Find the bot's comment
   const comment = comments.find(
